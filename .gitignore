@@ -1,3 +1,7 @@
 __pycache__/
 data/*
 output/*
+
+// Ignore all files in data floader but not data
+!data 
+
