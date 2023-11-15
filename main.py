@@ -253,7 +253,7 @@ file_gen.save()
 my_ans_path = rf'output/test.csv'
 #target_path = rf'data\answer.txt'
 target_path  = ANS_PATH
-comparator = Csv_comparator(my_ans_path,target_path ,  specify_label = None , ignore_time = 1 )
+comparator = Csv_comparator(my_ans_path,target_path ,  specify_label = None , ignore_time = 0 )
 comparator.compare()
 comparator.print_res()
 comparator.calc_f1_score()
