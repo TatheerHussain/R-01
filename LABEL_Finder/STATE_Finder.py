@@ -69,9 +69,11 @@ class STATE_Finder(Finder):
         self.res_label = []
         for i in range(len(self.PATTERN)):
             if len(self.PATTERN[i])<5:
-                self.PATTERN[i] = r'\b('+self.PATTERN[i]+r')[ \d]*\n'
+                # self.PATTERN[i] = r'\b('+self.PATTERN[i]+r')[ \d]*\n'#V1
+                self.PATTERN[i] = r'\b('+self.PATTERN[i]+r') *\d\d\d\d'#
             else:
-                self.PATTERN[i] = r'('+self.PATTERN[i]+r')[ \d]*\n'
+                # self.PATTERN[i] = r'('+self.PATTERN[i]+r')[ \d]*\n'#V1
+                self.PATTERN[i] = r'('+self.PATTERN[i]+r') *\d\d\d\d'#
         
         
     def find(self):

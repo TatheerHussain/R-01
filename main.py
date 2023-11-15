@@ -3,7 +3,8 @@ import pandas as pd
 import os 
 
 from Answer_file_generator import Answer_file_generator
-#from Finder.Finder import Finder
+from LABEL_Finder.Finder import Finder
+
 from Csv_comparator import Csv_comparator
 from LABEL_Finder.IDNUM_Finder import IDNUM_Finder
 from LABEL_Finder.DOCTOR_Finder import DOCTOR_Finder
@@ -81,7 +82,7 @@ for file_name in file_listdir:
 
 for file_name in all_file_names:
     name = os.path.splitext(file_name)[0]
-    
+    result = []
     #############################################################################
     ################################### IDNUM ###################################
     #############################################################################
@@ -241,10 +242,12 @@ for file_name in all_file_names:
         #add to file_gen
         for l in lb:
             file_gen.add_item(name, l[0], l[1], 'COUNTRY', l[2])
-            
+    
+    
+    
     
 file_gen.print_df()
-    
+file_gen.remove_overlap()
     #save
 file_gen.save()
 
@@ -253,7 +256,7 @@ file_gen.save()
 my_ans_path = rf'output/test.csv'
 #target_path = rf'data\answer.txt'
 target_path  = ANS_PATH
-comparator = Csv_comparator(my_ans_path,target_path ,  specify_label = None , ignore_time = 0 )
+comparator = Csv_comparator(my_ans_path,target_path ,  specify_label = 'COUNTRY' , ignore_time = 0 )
 comparator.compare()
 comparator.print_res()
 comparator.calc_f1_score()
