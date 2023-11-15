@@ -36,5 +36,27 @@
 | Macro-avg.| 0.9591303 | 0.81898 | 0.8835319 | 2040 |
 |-------------|----------:|:------:|----------:|----------:|
 
-
+# FIRST
+| Label           | Count |    State             | Method |
+|-----------------|-------|----------------------|-------|
+| DOCTOR          | 3784  | O                    |  re PATTERN |
+| DATE            | 2922  | O?                   | re PATTERN |
+| IDNUM           | 2346  | O                    | |
+| MEDICALRECORD   | 1210  | O                    | |
+| PATIENT         | 1196  | O                    | |
+| HOSPITAL        | 1177  | O                    | |
+| TIME            | 664   | O                    | |
+| DEPARTMENT      | 537   | 0.8352               | |
+| CITY            | 458   | XX                   | |
+| ZIP             | 452   | O                    | |
+| STREET          | 444   | O                    | |
+| STATE           | 428   | O                    | |
+| AGE             | 89    | O                    | | 
+| ORGANIZATION    | 69    |                      | |
+| DURATION        | 13    | 0.827 # few          | |
+| PHONE           | 5     | O                    | |
+| URL             | 3     |                      | |
+| LOCATION-OTHER  | 2     | O                    | |
+| SET             | 1     | O                    | |
+| COUNTRY         | 1     |                      | |
 
