@@ -24,26 +24,28 @@ from LABEL_Finder.PHONE_Finder import PHONE_Finder
 from LABEL_Finder.LOCATION_OTHER_Finder import LOCATION_OTHER_Finder
 from LABEL_Finder.SET_Finder import SET_Finder
 from LABEL_Finder.COUNTRY_Finder import COUNTRY_Finder
+from LABEL_Finder.ORGANIZATION_Finder import ORGANIZATION_Finder
 
 ### all finder en
-IDNUM_FINDER_EN               = 1
-DOCTOR_FINDER_EN              = 1
-MEDICALRECORD_FINDER_EN       = 1
-PATIENT_FINDER_EN             = 1
-HOSPITAL_FINDER_EN            = 1
-DATE_FINDER_EN                = 1
-TIME_FINDER_EN                = 1
-CITY_FINDER_EN                = 1
-STREET_FINDER_EN              = 1
-ZIP_FINDER_EN                 = 1
-STATE_FINDER_EN               = 1
-DEPARTMENT_FINDER_EN          = 1
-AGE_FINDER_EN                 = 1
-DURATION_FINDER_EN            = 1
-PHONE_FINDER_EN               = 1
-LOCATION_OTHER_FINDER_EN      = 1
-SET_FINDER_EN                 = 1
-COUNTRY_FINDER_EN             = 1
+IDNUM_FINDER_EN               = 0
+DOCTOR_FINDER_EN              = 0
+MEDICALRECORD_FINDER_EN       = 0
+PATIENT_FINDER_EN             = 0
+HOSPITAL_FINDER_EN            = 0
+DATE_FINDER_EN                = 0
+TIME_FINDER_EN                = 0
+CITY_FINDER_EN                = 0
+STREET_FINDER_EN              = 0
+ZIP_FINDER_EN                 = 0
+STATE_FINDER_EN               = 0
+DEPARTMENT_FINDER_EN          = 0
+AGE_FINDER_EN                 = 0
+DURATION_FINDER_EN            = 0
+PHONE_FINDER_EN               = 0
+LOCATION_OTHER_FINDER_EN      = 0
+SET_FINDER_EN                 = 0
+COUNTRY_FINDER_EN             = 0
+ORGANIZATION_Finder_EN        = 1
 
 
 
@@ -243,6 +245,15 @@ for file_name in all_file_names:
         for l in lb:
             file_gen.add_item(name, l[0], l[1], 'COUNTRY', l[2])
     
+    if ORGANIZATION_Finder_EN:
+        finder = ORGANIZATION_Finder()
+        finder.set_file(FILE_DIR+file_name)
+        #find all pattern
+        lb = finder.find()
+        #add to file_gen
+        for l in lb:
+            #print(l)
+            file_gen.add_item(name, l[0], l[1], 'ORGANIZATION', l[2])
     
     
     
@@ -256,7 +267,7 @@ file_gen.save()
 my_ans_path = rf'output/test.csv'
 #target_path = rf'data\answer.txt'
 target_path  = ANS_PATH
-comparator = Csv_comparator(my_ans_path,target_path ,  specify_label = 'COUNTRY' , ignore_time = 0 )
+comparator = Csv_comparator(my_ans_path,target_path ,  specify_label = 'ORGANIZATION' , ignore_time = 0 )
 comparator.compare()
 comparator.print_res()
 comparator.calc_f1_score()

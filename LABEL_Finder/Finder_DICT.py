@@ -16,6 +16,17 @@ class Finder_DICT:
     def set_file(self , file):# str
         self.file = file
     
+    def dict_len_filter(self , min_len , max_len=None):
+        new_dict = []
+        for word in self.dict:
+            if max_len == None:
+                if len(word) >= min_len:
+                    new_dict.append(word)
+            else:
+                if len(word) >= min_len and len(word) <= max_len:
+                    new_dict.append(word)
+        self.dict = new_dict
+    
     def find_all(self):
         res = []
         for word in self.dict:
