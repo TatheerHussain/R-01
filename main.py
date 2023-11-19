@@ -57,8 +57,8 @@ ORGANIZATION_FINDER_EN        = 1
 
 
 FILE_DIR = './data/file/'
-ANS_PATH = './data/file/answer.txt'
-#
+ANS_PATH = './data/answer.txt'
+
 FILE_DIR = r'C:\Users\rui\Desktop\First_Phase_ReleaseCorrection\First_Phase_Release(Correction)\Validation_Release/'
 ANS_PATH = r'C:\Users\rui\Desktop\answer_1V.txt'
 
@@ -258,7 +258,7 @@ for file_name in all_file_names:
     
     
 file_gen.print_df()
-file_gen.remove_overlap()
+file_gen.remove_overlap() # main for country
     #save
 file_gen.save()
 
@@ -267,7 +267,7 @@ file_gen.save()
 my_ans_path = rf'output/test.csv'
 #target_path = rf'data\answer.txt'
 target_path  = ANS_PATH
-comparator = Csv_comparator(my_ans_path,target_path ,  specify_label = None , ignore_time = 0 )
+comparator = Csv_comparator(my_ans_path,target_path ,  specify_label = 'COUNTRY'  , ignore_time = 0 )#'ORGANIZATION'
 comparator.compare()
 comparator.print_res()
 comparator.calc_f1_score()

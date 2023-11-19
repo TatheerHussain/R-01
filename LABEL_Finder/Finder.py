@@ -86,7 +86,28 @@ class Finder:
                 break
             new_e += 1
         return [ new_s , new_e ,  self.file[new_s:new_e]]
-            
+    
+    def len_filter(self , label_arr ,  min_len=None , max_len=None):
+        res = []
+        if min_len==None and max_len==None:
+            return label_arr
+        elif min_len==None:
+            for lb in label_arr:
+                s,e,w = lb
+                if len(w) <= max_len:
+                    res.append(lb)
+        elif max_len==None:
+            for lb in label_arr:
+                s,e,w = lb
+                if len(w) >= min_len:
+                    res.append(lb)
+        else:
+            for lb in label_arr:
+                s,e,w = lb
+                if len(w) >= min_len and len(w) <= max_len:
+                    res.append(lb)
+        return res
+
 if __name__=='__main__':
     finder = Finder()
     finder.set_file(rf'.\data\answer.txt')

@@ -73,30 +73,33 @@ Date 	    <Rank 	    子任務 1：病患隱私資訊擷取 	子任務 2：時�
 | Macro-avg.| 0.9591176 | 0.9276987 | 0.9431465 | 2040 |
 |-------------|----------:|:------:|----------:|----------:|
 
+# 11/20
+可惡codalab 太慢出成績
+
 
 # FIRST
-| Label           | Count |    State             | Method           | 說明                              |
-|-----------------|-------|----------------------|------------------|------------------                 |
-| DOCTOR          | 3784  | O                    |  re PATTERN      |                                   |
-| DATE            | 2922  | O?                   |  re PATTERN      |                                   | 
-| IDNUM           | 2346  | O                    |                  |                                   |
-| MEDICALRECORD   | 1210  | O                    |                  |                                   |
-| PATIENT         | 1196  | O                    |                  |                                   |
-| HOSPITAL        | 1177  | O                    |                  |                                   |
-| TIME            | 664   | O                    |                  |                                   |
-| DEPARTMENT      | 537   | 0.8352               |                  |                                   |
-| CITY            | 458   | XX                   |                  |                                   |
-| ZIP             | 452   | O                    |                  |                                   |
-| STREET          | 444   | O                    |                  |                                   |
-| STATE           | 428   | O                    |                  |                                   |
-| AGE             | 89    | O                    |                  |                                   |
-| ORGANIZATION    | 69    |                      |                  |                                   |
-| DURATION        | 13    | 0.827 # few          |                  | 暴力解887.txt  4-5 month = 4.5?   |
-| PHONE           | 5     | O                    |                  |                                   |
-| URL             | 3     |                      |                  |                                   |
-| LOCATION-OTHER  | 2     | O                    |                  |                                   |
-| SET             | 1     | O                    |                  |                                   |
-| COUNTRY         | 1     |                      |                  |                                   |
+| Label           | Count |    State             | Method           | 說明                                      |
+|-----------------|-------|----------------------|------------------|------------------                         |
+| DOCTOR          | 3784  | O                    |  re PATTERN      |                                           |
+| DATE            | 2922  | O?                   |  re PATTERN      |                                           | 
+| IDNUM           | 2346  | O                    |                  |                                           |
+| MEDICALRECORD   | 1210  | O                    |                  |                                           |
+| PATIENT         | 1196  | O                    |                  |                                           |
+| HOSPITAL        | 1177  | O                    |                  |                                           |
+| TIME            | 664   | O                    |                  |                                           |
+| DEPARTMENT      | 537   | 0.8352               |                  |                                           |
+| CITY            | 458   | XX                   |                  |                                           |
+| ZIP             | 452   | O                    |                  |                                           |
+| STREET          | 444   | O                    |                  |                                           |
+| STATE           | 428   | O                    |                  |                                           |
+| AGE             | 89    | O                    |                  |                                           |
+| ORGANIZATION    | 69    |                      |                  | 字典解:0.79999, 有加 force_dict:0.98571    |
+| DURATION        | 13    | 0.827 # few          |                  | 暴力解887.txt  4-5 month = 4.5?            |
+| PHONE           | 5     | O                    |                  |                                           |
+| URL             | 3     |                      |                  |                                           |
+| LOCATION-OTHER  | 2     | O                    |                  |                                           |
+| SET             | 1     | O                    |                  |                                           |
+| COUNTRY         | 1     |                      |                  |  目前缺字典                                 |
 
 
 # ORGANIZATION
