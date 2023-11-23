@@ -82,7 +82,7 @@ for file_name in file_listdir:
 # print(lb)
 # exit()
 
-file_gen = Answer_file_generator(rf'output\answer.txt')
+file_gen = Answer_file_generator(rf'.output\answer.txt')
 
 # for file_name in file_listdir:
 #     if file_name.endswith(".txt"):  # Filter files with a .txt extension
@@ -272,7 +272,7 @@ file_gen.save()
 # check answer
 # exit() ## dont have answer.txt
 
-my_ans_path = rf'output/answer.txt'
+my_ans_path = rf'.output/answer.txt'
 #target_path = rf'data\answer.txt'
 target_path  = ANS_PATH
 comparator = Csv_comparator(my_ans_path,target_path ,  specify_label = 'DEPARTMENT'  , ignore_time = 0 )#'ORGANIZATION'

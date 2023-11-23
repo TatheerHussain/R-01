@@ -4,7 +4,7 @@ import subprocess
 class Eval:
     def __init__(self, eval_tool):
         self.TOOL_PATH = './eval'
-        self.data_dir = 'output' # this floder have res ref
+        self.data_dir = '.output' # this floder have res ref
         self.run_cmd = f'{self.TOOL_PATH}/OpenDeid {self.data_dir} {self.data_dir}'
         
         self.input_res_path = None

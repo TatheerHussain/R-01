@@ -105,9 +105,9 @@ class Csv_comparator:
         #  print end of  10 data
         print(self.target_df)
     def save_res(self , dir=''):
-        self.my_ans_df.to_csv('output/your wrong answer.csv' , sep='\t' , header=False)
-        self.target_df.to_csv('output/you dont found the following.csv' , sep='\t' , header=False)
-        self.correct_df.to_csv('output/correct.csv' , sep='\t' , header=False)
+        self.my_ans_df.to_csv('.output/your wrong answer.csv' , sep='\t' , header=False)
+        self.target_df.to_csv('.output/you dont found the following.csv' , sep='\t' , header=False)
+        self.correct_df.to_csv('.output/correct.csv' , sep='\t' , header=False)
         
     
         
