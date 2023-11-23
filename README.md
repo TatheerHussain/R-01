@@ -108,3 +108,10 @@ Date 	    <Rank 	    子任務 1：病患隱私資訊擷取 	子任務 2：時�
 ### dict V2 : 
 * https://www.50pros.com/fortune500
 * https://www.sec.gov/files/rules/other/4-460list.htm
+
+
+
+# 目前還有機會提升
+* ORGANIZATION
+* DEPARTMENT # 等待字典
+* COUNTRY

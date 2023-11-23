@@ -182,7 +182,7 @@ class DATE_Finder(Finder):
                     #print(f'change {t} to {y}-{d:02d}-{m:02d}')
                     lb[3] = f'{y}-{d:02d}-{m:02d}'
                     
-        print(number_cnt)
+        # print(number_cnt)
                     
 
         return labels

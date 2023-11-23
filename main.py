@@ -4,6 +4,8 @@ import os
 
 from Answer_file_generator import Answer_file_generator
 from LABEL_Finder.Finder import Finder
+from eval_tool_operation import Eval
+
 
 from Csv_comparator import Csv_comparator
 from LABEL_Finder.IDNUM_Finder import IDNUM_Finder
@@ -47,20 +49,24 @@ SET_FINDER_EN                 = 1
 COUNTRY_FINDER_EN             = 1
 ORGANIZATION_FINDER_EN        = 1
 
+FILE_DIR ='' 
+ANS_PATH ='' # answer.txt
 
+if 0:
+    FILE_DIR = './data/First_Phase/data'
+    ANS_PATH = './data/First_Phase/answer.txt'
+    
+if 1:
+    FILE_DIR = './data/First_Phase_Validation/data'
+    ANS_PATH = './data/First_Phase_Validation/answer.txt'
 
+if 0:
+    FILE_DIR = './data/Second_Phase/data'
+    ANS_PATH = './data/Second_Phase/answer.txt'
 
-
-
-
-
-
-
-FILE_DIR = './data/file/'
-ANS_PATH = './data/answer.txt'
-
-FILE_DIR = r'C:\Users\rui\Desktop\First_Phase_ReleaseCorrection\First_Phase_Release(Correction)\Validation_Release/'
-ANS_PATH = r'C:\Users\rui\Desktop\answer_1V.txt'
+if 0:
+    FILE_DIR = './data/merge_first_second_phase/data'
+    ANS_PATH = './data/merge_first_second_phase/answer.txt'
 
 
 file_listdir = os.listdir(FILE_DIR)
@@ -76,11 +82,12 @@ for file_name in file_listdir:
 # print(lb)
 # exit()
 
-file_gen = Answer_file_generator(r'output\test.csv')
+file_gen = Answer_file_generator(rf'output\answer.txt')
 
-for file_name in file_listdir:
-    if file_name.endswith(".txt"):  # Filter files with a .txt extension
-        print(file_name)
+# for file_name in file_listdir:
+#     if file_name.endswith(".txt"):  # Filter files with a .txt extension
+#         print(file_name , end=' ')
+# print()
 
 for file_name in all_file_names:
     name = os.path.splitext(file_name)[0]
@@ -90,7 +97,7 @@ for file_name in all_file_names:
     #############################################################################
     if IDNUM_FINDER_EN:
         finder  = IDNUM_Finder()
-        finder.set_file(FILE_DIR+file_name)
+        finder.set_file(os.path.join(FILE_DIR,file_name))
         #find all pattern
         lb = finder.find()
         #add to file_gen
@@ -98,7 +105,7 @@ for file_name in all_file_names:
             file_gen.add_item(name, l[0], l[1], 'IDNUM', l[2])
     if DOCTOR_FINDER_EN:
         finder  = DOCTOR_Finder()
-        finder.set_file(FILE_DIR+file_name)
+        finder.set_file(os.path.join(FILE_DIR,file_name))
         #find all pattern
         lb = finder.find(name)
         #add to file_gen
@@ -109,7 +116,7 @@ for file_name in all_file_names:
     #MEDICALRECORD_Finder
     if MEDICALRECORD_FINDER_EN: # 0.9971086327963651
         finder  = MEDICALRECORD_Finder()
-        finder.set_file(FILE_DIR+file_name)
+        finder.set_file(os.path.join(FILE_DIR,file_name))
         #find all pattern
         lb = finder.find()
         #add to file_gen
@@ -118,7 +125,7 @@ for file_name in all_file_names:
             
     if PATIENT_FINDER_EN: # 0.9860583016476553
         finder  = PATIENT_Finder()
-        finder.set_file(FILE_DIR+file_name)
+        finder.set_file(os.path.join(FILE_DIR,file_name))
         #find all pattern
         lb = finder.find()
         #add to file_gen
@@ -126,7 +133,7 @@ for file_name in all_file_names:
             file_gen.add_item(name, l[0], l[1], 'PATIENT', l[2])
     if HOSPITAL_FINDER_EN: # 0.9860583016476553
         finder  = HOSPITAL_Finder()
-        finder.set_file(FILE_DIR+file_name)
+        finder.set_file(os.path.join(FILE_DIR,file_name))
         #find all pattern
         lb = finder.find()
         #add to file_gen
@@ -134,7 +141,7 @@ for file_name in all_file_names:
             file_gen.add_item(name, l[0], l[1], 'HOSPITAL', l[2])
     if DATE_FINDER_EN:
         finder  = DATE_Finder()
-        finder.set_file(FILE_DIR+file_name)
+        finder.set_file(os.path.join(FILE_DIR,file_name))
         #find all pattern
         lb = finder.find()
         lb = finder.date_normalization(lb)
@@ -145,7 +152,7 @@ for file_name in all_file_names:
     
     if TIME_FINDER_EN:
         finder  = TIME_Finder()
-        finder.set_file(FILE_DIR+file_name)
+        finder.set_file(os.path.join(FILE_DIR,file_name))
         #find all pattern
         lb = finder.find()
         lb = finder.time_normalization(lb)
@@ -155,7 +162,7 @@ for file_name in all_file_names:
             
     if CITY_FINDER_EN:
         finder  = CITY_Finder()
-        finder.set_file(FILE_DIR+file_name)
+        finder.set_file(os.path.join(FILE_DIR,file_name))
         #find all pattern
         lb = finder.find()
         #add to file_gen
@@ -163,7 +170,7 @@ for file_name in all_file_names:
             file_gen.add_item(name, l[0], l[1], 'CITY', l[2])
     if STREET_FINDER_EN:  # 0.9921259842519685
         finder = STREET_Finder()
-        finder.set_file(FILE_DIR+file_name)
+        finder.set_file(os.path.join(FILE_DIR,file_name))
         #find all pattern
         lb = finder.find()
         #add to file_gen
@@ -171,7 +178,7 @@ for file_name in all_file_names:
             file_gen.add_item(name, l[0], l[1], 'STREET', l[2])    
     if ZIP_FINDER_EN:  # 0.9888641425389755
         finder  = ZIP_Finder()
-        finder.set_file(FILE_DIR+file_name)
+        finder.set_file(os.path.join(FILE_DIR,file_name))
         #find all pattern
         lb = finder.find()
         #add to file_gen
@@ -179,7 +186,7 @@ for file_name in all_file_names:
             file_gen.add_item(name, l[0], l[1], 'ZIP', l[2])
     if STATE_FINDER_EN: # 0.991774383078731
         finder = STATE_Finder()
-        finder.set_file(FILE_DIR+file_name)
+        finder.set_file(os.path.join(FILE_DIR,file_name))
         #find all pattern
         lb = finder.find()
         #add to file_gen
@@ -187,7 +194,7 @@ for file_name in all_file_names:
             file_gen.add_item(name, l[0], l[1], 'STATE', l[2])
     if DEPARTMENT_FINDER_EN:
         finder = DEPARTMENT_Finder()
-        finder.set_file(FILE_DIR+file_name)
+        finder.set_file(os.path.join(FILE_DIR,file_name))
         #find all pattern
         lb = finder.find()
         #add to file_gen
@@ -195,7 +202,7 @@ for file_name in all_file_names:
             file_gen.add_item(name, l[0], l[1], 'DEPARTMENT', l[2])
     if AGE_FINDER_EN: # 0.9775280898876404
         finder = AGE_Finder()
-        finder.set_file(FILE_DIR+file_name)
+        finder.set_file(os.path.join(FILE_DIR,file_name))
         #find all pattern
         lb = finder.find()
         #add to file_gen
@@ -204,7 +211,7 @@ for file_name in all_file_names:
             file_gen.add_item(name, l[0], l[1], 'AGE', l[2])
     if DURATION_FINDER_EN: # 0.8275862068965517 # data too few
         finder = DURATION_Finder()
-        finder.set_file(FILE_DIR+file_name)
+        finder.set_file(os.path.join(FILE_DIR,file_name))
         #find all pattern
         lb = finder.find()
         lb = finder.duration_normalization(lb)
@@ -213,7 +220,7 @@ for file_name in all_file_names:
             file_gen.add_item(name, l[0], l[1], 'DURATION', l[2]  , l[3])
     if PATIENT_FINDER_EN: # 1
         finder = PHONE_Finder()
-        finder.set_file(FILE_DIR+file_name)
+        finder.set_file(os.path.join(FILE_DIR,file_name))
         #find all pattern
         lb = finder.find()
         #add to file_gen
@@ -221,7 +228,7 @@ for file_name in all_file_names:
             file_gen.add_item(name, l[0], l[1], 'PHONE', l[2])
     if LOCATION_OTHER_FINDER_EN:
         finder = LOCATION_OTHER_Finder()
-        finder.set_file(FILE_DIR+file_name)
+        finder.set_file(os.path.join(FILE_DIR,file_name))
         #find all pattern
         lb = finder.find()
         #add to file_gen
@@ -229,7 +236,7 @@ for file_name in all_file_names:
             file_gen.add_item(name, l[0], l[1], 'LOCATION-OTHER', l[2])
     if SET_FINDER_EN:
         finder = SET_Finder()
-        finder.set_file(FILE_DIR+file_name)
+        finder.set_file(os.path.join(FILE_DIR,file_name))
         #find all pattern
         lb = finder.find()
         lb = finder.set_normalization(lb)
@@ -238,7 +245,7 @@ for file_name in all_file_names:
             file_gen.add_item(name, l[0], l[1], 'SET', l[2], l[3])
     if COUNTRY_FINDER_EN:
         finder = COUNTRY_Finder()
-        finder.set_file(FILE_DIR+file_name)
+        finder.set_file(os.path.join(FILE_DIR,file_name))
         #find all pattern
         lb = finder.find()
         #add to file_gen
@@ -247,7 +254,7 @@ for file_name in all_file_names:
     
     if ORGANIZATION_FINDER_EN:
         finder = ORGANIZATION_Finder()
-        finder.set_file(FILE_DIR+file_name)
+        finder.set_file(os.path.join(FILE_DIR,file_name))
         #find all pattern
         lb = finder.find()
         #add to file_gen
@@ -263,11 +270,12 @@ file_gen.remove_overlap() # main for country
 file_gen.save()
 
 # check answer
-    
-my_ans_path = rf'output/test.csv'
+# exit() ## dont have answer.txt
+
+my_ans_path = rf'output/answer.txt'
 #target_path = rf'data\answer.txt'
 target_path  = ANS_PATH
-comparator = Csv_comparator(my_ans_path,target_path ,  specify_label = 'COUNTRY'  , ignore_time = 0 )#'ORGANIZATION'
+comparator = Csv_comparator(my_ans_path,target_path ,  specify_label = 'DEPARTMENT'  , ignore_time = 0 )#'ORGANIZATION'
 comparator.compare()
 comparator.print_res()
 comparator.calc_f1_score()
@@ -275,4 +283,10 @@ comparator.calc_f1_score()
 comparator.save_res()
 
 
+##### 
+# eval tool cmd :  ./eval/OpenDeid eval/file eval/file --detial
+eval = Eval('./eval')
+eval.set_res_path(my_ans_path)
+eval.set_ref_path(target_path)
+eval.run(detail=0)
 

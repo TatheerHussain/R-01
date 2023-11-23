@@ -14,10 +14,15 @@ class DEPARTMENT_Finder(Finder):
             # rf'\nSiteName\n(.+)\n', #0.9971
             # rf"Location:.*?- *(?:OPERATIVE UNIT|OPERATIVEUNIT)?+[\- ]*([' &A-Z/\-\(\)]+) *\n" ,  #0.994
             ###### sel end
-            
+            r'(Cure For Life Foundation Neuro-oncology Laboratory Adult Cancer)'        ,
             
             # acc word r"[A-Za-z0-9\']"
-            r"Location: *([A-Za-z0-9\']+(?: +[A-Za-z0-9\']+)*) *-"          ,
+            #11/23 V1
+            # r"Location: *([A-Za-z0-9\']+(?: +[A-Za-z0-9\']+)*) *-"          ,
+
+            r"Location: *((?:PERI-|Cure For Life Foundation Neuro-)?[A-Za-z0-9\']+(?: +[A-Za-z0-9\']+)*) *-"          ,
+            
+        
         ]
         self.res_label = []
         

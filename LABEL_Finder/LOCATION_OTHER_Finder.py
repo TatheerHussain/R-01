@@ -6,7 +6,7 @@ class LOCATION_OTHER_Finder(Finder):
         super().__init__()
         
         self.PATTERN = [ #DOCTOR
-            r'(?i)(P\.?O\.? *BOX *\d+)',
+            r'(?i)(P\.? ?O\.? *BOX *\d+)',
             
         ]
         self.res_label = []
