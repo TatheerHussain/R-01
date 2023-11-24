@@ -56,7 +56,7 @@ if 0:
     FILE_DIR = './data/First_Phase/data'
     ANS_PATH = './data/First_Phase/answer.txt'
     
-if 1:
+if 0:
     FILE_DIR = './data/First_Phase_Validation/data'
     ANS_PATH = './data/First_Phase_Validation/answer.txt'
 
@@ -64,7 +64,7 @@ if 0:
     FILE_DIR = './data/Second_Phase/data'
     ANS_PATH = './data/Second_Phase/answer.txt'
 
-if 0:
+if 1:
     FILE_DIR = './data/merge_first_second_phase/data'
     ANS_PATH = './data/merge_first_second_phase/answer.txt'
 
@@ -92,18 +92,21 @@ file_gen = Answer_file_generator(rf'.output\answer.txt')
 for file_name in all_file_names:
     name = os.path.splitext(file_name)[0]
     result = []
-    #############################################################################
-    ################################### IDNUM ###################################
-    #############################################################################
-    if ORGANIZATION_FINDER_EN:# 字典部分提前
-        finder = ORGANIZATION_Finder()
+    
+    if LOCATION_OTHER_FINDER_EN:
+        finder = LOCATION_OTHER_Finder()
         finder.set_file(os.path.join(FILE_DIR,file_name))
         lb = finder.find()
         for l in lb:
-            file_gen.add_item(name, l[0], l[1], 'ORGANIZATION', l[2])
+            file_gen.add_item(name, l[0], l[1], 'LOCATION-OTHER', l[2])
     
-    
-    
+    if PATIENT_FINDER_EN: # 1
+        finder = PHONE_Finder()
+        finder.set_file(os.path.join(FILE_DIR,file_name))
+        lb = finder.find()
+        for l in lb:
+            file_gen.add_item(name, l[0], l[1], 'PHONE', l[2])
+            
     if IDNUM_FINDER_EN:
         finder  = IDNUM_Finder()
         finder.set_file(os.path.join(FILE_DIR,file_name))
@@ -117,8 +120,6 @@ for file_name in all_file_names:
         for l in lb:
             file_gen.add_item(name, l[0], l[1], 'DOCTOR', l[2])
     
-
-    #MEDICALRECORD_Finder
     if MEDICALRECORD_FINDER_EN: # 0.9971086327963651
         finder  = MEDICALRECORD_Finder()
         finder.set_file(os.path.join(FILE_DIR,file_name))
@@ -161,36 +162,42 @@ for file_name in all_file_names:
         lb = finder.find()
         for l in lb:
             file_gen.add_item(name, l[0], l[1], 'CITY', l[2])
+    
     if STREET_FINDER_EN:  # 0.9921259842519685
         finder = STREET_Finder()
         finder.set_file(os.path.join(FILE_DIR,file_name))
         lb = finder.find()
         for l in lb:
             file_gen.add_item(name, l[0], l[1], 'STREET', l[2])    
+    
     if ZIP_FINDER_EN:  # 0.9888641425389755
         finder  = ZIP_Finder()
         finder.set_file(os.path.join(FILE_DIR,file_name))
         lb = finder.find()
         for l in lb:
             file_gen.add_item(name, l[0], l[1], 'ZIP', l[2])
+    
     if STATE_FINDER_EN: # 0.991774383078731
         finder = STATE_Finder()
         finder.set_file(os.path.join(FILE_DIR,file_name))
         lb = finder.find()
         for l in lb:
             file_gen.add_item(name, l[0], l[1], 'STATE', l[2])
+    
     if DEPARTMENT_FINDER_EN:
         finder = DEPARTMENT_Finder()
         finder.set_file(os.path.join(FILE_DIR,file_name))
         lb = finder.find()
         for l in lb:
             file_gen.add_item(name, l[0], l[1], 'DEPARTMENT', l[2])
+    
     if AGE_FINDER_EN: # 0.9775280898876404
         finder = AGE_Finder()
         finder.set_file(os.path.join(FILE_DIR,file_name))
         lb = finder.find()
         for l in lb:
             file_gen.add_item(name, l[0], l[1], 'AGE', l[2])
+    
     if DURATION_FINDER_EN: # 0.8275862068965517 # data too few
         finder = DURATION_Finder()
         finder.set_file(os.path.join(FILE_DIR,file_name))
@@ -198,18 +205,9 @@ for file_name in all_file_names:
         lb = finder.duration_normalization(lb)
         for l in lb:
             file_gen.add_item(name, l[0], l[1], 'DURATION', l[2]  , l[3])
-    if PATIENT_FINDER_EN: # 1
-        finder = PHONE_Finder()
-        finder.set_file(os.path.join(FILE_DIR,file_name))
-        lb = finder.find()
-        for l in lb:
-            file_gen.add_item(name, l[0], l[1], 'PHONE', l[2])
-    if LOCATION_OTHER_FINDER_EN:
-        finder = LOCATION_OTHER_Finder()
-        finder.set_file(os.path.join(FILE_DIR,file_name))
-        lb = finder.find()
-        for l in lb:
-            file_gen.add_item(name, l[0], l[1], 'LOCATION-OTHER', l[2])
+    
+
+
     if SET_FINDER_EN:
         finder = SET_Finder()
         finder.set_file(os.path.join(FILE_DIR,file_name))
@@ -224,12 +222,12 @@ for file_name in all_file_names:
         for l in lb:
             file_gen.add_item(name, l[0], l[1], 'COUNTRY', l[2])
     
-    # if ORGANIZATION_FINDER_EN:
-    #     finder = ORGANIZATION_Finder()
-    #     finder.set_file(os.path.join(FILE_DIR,file_name))
-    #     lb = finder.find()
-    #     for l in lb:
-    #         file_gen.add_item(name, l[0], l[1], 'ORGANIZATION', l[2])
+    if ORGANIZATION_FINDER_EN:
+        finder = ORGANIZATION_Finder()
+        finder.set_file(os.path.join(FILE_DIR,file_name))
+        lb = finder.find()
+        for l in lb:
+            file_gen.add_item(name, l[0], l[1], 'ORGANIZATION', l[2])
     
     
     
@@ -244,7 +242,7 @@ file_gen.save()
 my_ans_path = rf'.output/answer.txt'
 #target_path = rf'data\answer.txt'
 target_path  = ANS_PATH
-comparator = Csv_comparator(my_ans_path,target_path ,  specify_label = 'DEPARTMENT'  , ignore_time = 0 )#'ORGANIZATION'
+comparator = Csv_comparator(my_ans_path,target_path ,  specify_label = 'TIME'  , ignore_time = 1 )#'ORGANIZATION'
 comparator.compare()
 comparator.print_res()
 comparator.calc_f1_score()

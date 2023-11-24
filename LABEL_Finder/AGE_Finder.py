@@ -6,23 +6,29 @@ class AGE_Finder(Finder):
         super().__init__()
         
         self.PATTERN = [ #DOCTOR
-            r'(\d{2,3}) *yr *old',
-            r'(\d{2,3}) *yrs *old',
-            r'(\d{2,3}) *year *old',
-            r'(\d{2,3}) *old\b',
-            r'(\d{2,3}) *year-old',
-            r'(\d{2,3}) *year\b',
-            r'(\d{2,3}) *yo\b',
-            r'(\d{2,3}) *y\.o\.',
-            r'\n(\d{2,3}) ?F\b', ##(?!\.)
-            r'\n(\d{2,3}) ?M\b', ##(?!\.)
-            r'\n(\d{2,3})yr\b',
-            r'\bage *(\d{2,3})\b',
+            r'(?i)(\d{2,3}) *years *old',
+            r'(?i)(\d{2,3}) *year *old',
+            r'(?i)(\d{2,3}) *yrs *old',
+            r'(?i)(\d{2,3}) *yr *old',
+            r'(?i)(\d{2,3}) *year-old',
+            r'(?i)(\d{2,3})-year-old',
+            r'(?i)(\d{2,3}) *year\b',
+            r'(?i)(\d{2,3}) *old\b',
+            r'(?i)(\d{2,3}) *yo\b',
+            r'(?i)(\d{2,3}) *y\.o\.',
+            r'(?i)\n(\d{2,3}) ?F\b', ##(?!\.)
+            r'(?i)\n(\d{2,3}) ?M\b', ##(?!\.)
+            r'(?i)\n(\d{2,3})yr\b',
+            r'(?i)\bage *(\d{2,3})\b',
             
             # for file29331 56 female
             r'(?i)(\d{2,3}) *female',
             r'(?i)(\d{2,3}) *male',
             
+            # 
+            r'cancer at (\d{2,3})s?\b',
+            r'cancer in (\d{2,3})s?\b',
+            # r'cancer (\d{2,3})\b',
             
             
         ]

@@ -34,7 +34,7 @@ class DEPARTMENT_Finder(Finder):
             self.dict_pattern = sorted(self.dict_pattern, key=lambda x:len(x), reverse=True)
             for i in range(len(self.dict_pattern)):
                 self.dict_pattern[i] = '(' + re.escape(self.dict_pattern[i]) + ')'
-                print(self.dict_pattern[i])
+                # print(self.dict_pattern[i])
             self.res_label = self.re_find(self.dict_pattern) + self.res_label
             
             

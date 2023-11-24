@@ -8,6 +8,10 @@ class PHONE_Finder(Finder):
         self.PATTERN = [ #DOCTOR
             r'\((\d\d\d\d \d\d\d\d)\)',
             r'(?i)Phone: *(\d\d\d\d \d\d\d\d)',
+            r'(?i)Tel: *(\d\d\d\d \d\d\d\d)', # does not exit in data
+            
+            # match (83829154)
+            r'\((\d\d\d\d\d\d\d\d)\)',
             
         ]
         self.res_label = []

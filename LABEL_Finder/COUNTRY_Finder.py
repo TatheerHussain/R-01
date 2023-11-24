@@ -9,6 +9,7 @@ class COUNTRY_Finder(Finder):
             r'(Australia)',
             r'(Vietnam)',
             r'(South Africa)',
+            r'\b(USA)\b',
             
         ]
         self.res_label = []

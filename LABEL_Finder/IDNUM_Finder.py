@@ -20,6 +20,18 @@ class IDNUM_Finder(Finder):
             #find 22W23817,22W23817 
             r'[\n ](?P<id>\w{8,11}), ?(?P=id)'                   , # maybe it will same as patt 0,1,2 
             #r'[ \n](?P<id>\w{7,11}), ?(?P=id) '
+            
+            
+            # 11/24 add
+            r'SPRText\n(\w{7,11})\b',
+            r'SPRText\n\w{7,11}\((\w{7,11})\)',
+            # Pathology number 818540-31TH
+            r'Pathology number ([A-Z\d\-]{7,12})\b',
+            
+            
+            r'\(([A-Z\d]{7,11})\)',
+            
+            
         
         ]
         self.res_label = []

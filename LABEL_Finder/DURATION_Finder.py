@@ -4,18 +4,59 @@ import re
 class DURATION_Finder(Finder):
     def __init__(self):
         super().__init__()
+        #['zero', 'one' , 'two' , 'three' , 'four' , 'five' , 'six' , 'seven' , 'eight' , 'nine' , 'ten' , 'eleven' , 'twelve' , 'thirteen' , 'fourteen' , 'fifteen' , 'sixteen' , 'seventeen' , 'eightteen' , 'nineteen' , 'twenty' ]
+        self.ENGLISH_NUM = {
+            'zero' : '0',
+            'one' : '1',
+            'two' : '2',
+            'three' : '3',
+            'four' : '4',
+            'five' : '5',
+            'six' : '6',
+            'seven' : '7',
+            'eight' : '8',
+            'nine' : '9',
+            'ten' : '10',
+            'eleven' : '11',
+            'twelve' : '12',
+            'thirteen' : '13',
+            'fourteen' : '14',
+            'fifteen' : '15',
+            'sixteen' : '16',
+            'seventeen' : '17',
+            'eightteen' : '18',
+            'nineteen' : '19',
+            'twenty' : '20',
+        }
+        
         
         self.PATTERN = [ #DOCTOR
             ### '(\d{1,3}(?:-\d{1,3})?)'                        
                         
-            r'(\d{1,3}(?:-\d{1,3})? *years)',
-            r'(\d{1,3}(?:-\d{1,3})? *yrs)(?! old)',
-            r'(\d{1,3}(?:-\d{1,3})? *yr\b)(?! old)',
-            r'(\d{1,3}(?:-\d{1,3})? *weeks)',
-            r'(\d{1,3}(?:-\d{1,3})? *week)',
-            r'(\d{1,3}(?:-\d{1,3})? *wks)',
-            r'(\d{1,3}(?:-\d{1,3})? *months)',
-            r'(\d{1,3}(?:-\d{1,3})? *month)',
+            r'(?i)(\d{1,3}(?:-\d{1,3})? *years)\b(?! old)',
+            r'(?i)(\d{1,3}(?:-\d{1,3})? *year)\b(?! old)',
+            r'(?i)(\d{1,3}(?:-\d{1,3})? *yrs)\b(?! old)',
+            r'(?i)(\d{1,3}(?:-\d{1,3})? *yr\b)\b(?! old)',
+            r'(?i)(\d{1,3}(?:-\d{1,3})? *weeks)',
+            r'(?i)(\d{1,3}(?:-\d{1,3})? *week)',
+            r'(?i)(\d{1,3}(?:-\d{1,3})? *wks)',
+            r'(?i)(\d{1,3}(?:-\d{1,3})? *months)',
+            r'(?i)(\d{1,3}(?:-\d{1,3})? *month)',
+            
+            r'(?i)(\d{1,3}(?:-\d{1,3})? *day)',
+            r'(?i)(\d{1,3}(?:-\d{1,3})? *days)',
+            
+            # one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty
+            # r'(one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eightteen|nineteen|twenty) *years',
+            # (?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eightteen|nineteen|twenty)
+            r'(?i)((?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eightteen|nineteen|twenty) +years)(?! old)',
+            r'(?i)((?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eightteen|nineteen|twenty) +yrs)(?! old)',
+            r'(?i)((?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eightteen|nineteen|twenty) +yr\b)(?! old)',
+            r'(?i)((?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eightteen|nineteen|twenty) +weeks)',
+            r'(?i)((?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eightteen|nineteen|twenty) +week)',
+            r'(?i)((?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eightteen|nineteen|twenty) +wks)',
+            r'(?i)((?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eightteen|nineteen|twenty) +months)',
+            r'(?i)((?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eightteen|nineteen|twenty) +month)',
             
             
         ]
@@ -43,7 +84,7 @@ class DURATION_Finder(Finder):
         return self.res_label
     
     def normalization(self , date_str):
-        pattern = r'(\d{1,3}(?:-\d{1,3})?) *(?:years|yrs|yr)'
+        pattern = r'(\d{1,3}(?:-\d{1,3})?) *(?:years|year|yrs|yr)'
         mat = re.search(pattern , date_str)
         if mat!=None:
             num = mat.group(1).replace('-' , '.')
@@ -59,6 +100,45 @@ class DURATION_Finder(Finder):
         mat = re.search(pattern , date_str)
         if mat!=None:
             num = mat.group(1).replace('-' , '.')
+            return f'P{num}M'
+        
+        pattern = r'(\d{1,3}(?:-\d{1,3})?) *(?:days|day)'
+        mat = re.search(pattern , date_str)
+        if mat!=None:
+            num = mat.group(1).replace('-' , '.')
+            return f'P{num}D'
+        
+        # engilsh num
+        pattern = r'(\w+) *(?:years|yrs|yr)'
+        mat = re.search(pattern , date_str)
+        if mat!=None:
+            num = mat.group(1)
+            if num in self.ENGLISH_NUM:
+                num = self.ENGLISH_NUM[num]
+            return f'P{num}Y'
+        
+        pattern = r'(\w+) *(?:weeks|week|wks)'
+        mat = re.search(pattern , date_str)
+        if mat!=None:
+            num = mat.group(1)
+            if num in self.ENGLISH_NUM:
+                num = self.ENGLISH_NUM[num]
+            return f'P{num}W'
+        
+        pattern = r'(\w+) *(?:months|month)'
+        mat = re.search(pattern , date_str)
+        if mat!=None:
+            num = mat.group(1)
+            if num in self.ENGLISH_NUM:
+                num = self.ENGLISH_NUM[num]
+            return f'P{num}M'
+        
+        pattern = r'(\w+) *(?:days|day)'
+        mat = re.search(pattern , date_str)
+        if mat!=None:
+            num = mat.group(1)
+            if num in self.ENGLISH_NUM:
+                num = self.ENGLISH_NUM[num]
             return f'P{num}M'
         
     

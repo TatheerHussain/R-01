@@ -82,7 +82,14 @@ class TIME_Finder(Finder):
             r'(\d{1,2}:\d{1,2} (?:am|pm|a\.m\.|p\.m\.) on the \d\d(?:th|st|nd|rd) of (?:January|February|March|April|May|June|July|August|September|October|November|December) \d\d\d\d)'               ,
             #12th of December 2013 at 1740
             r'(\d\d(?:th|st|nd|rd) of (?:January|February|March|April|May|June|July|August|September|October|November|December) \d\d\d\d at \d{4})'               ,
-        
+
+            #######################
+            ##### TIME only   #####           
+            #######################
+            # not use
+            # r'((?:at )?\d{1,2}[:\.]\d{1,2} ?(?:am|pm|hr|hrs))',
+            
+            
         ]
         self.res_label = []
         

@@ -56,7 +56,7 @@ class DOCTOR_Finder(Finder):
         if 'file' not in file_name: # filexxxx.txt
             self.res_label += self.re_find(rf'\(TO: *([A-Z][A-Z])[;:]? *([A-Z][A-Z])?/')
             self.res_label += self.re_find(rf'\(([A-Z][A-Z])/')
-            
+
         self.res_label = self.del_same(self.res_label)
         
         self.res_label = self.remove_overlamp(self.res_label)
@@ -69,7 +69,7 @@ class DOCTOR_Finder(Finder):
         self.res_label = new_res_label
         # filter 'Dr'
         self.res_label = self.res_filter(r'Dr' , self.res_label)        
-        self.res_label = self.res_filter(r'^(?:HM|PG|RR|FP|ED)$' , self.res_label)        
+        self.res_label = self.res_filter(r'^(?:HM|PG|RR|FP|ED|JL|CA|MS)$' , self.res_label)        
         
         
         return self.res_label
