@@ -1,11 +1,12 @@
 
 ALL_ANSWER_PATH = [
-    rf'.\data\all_download_data\First_Phase\answer.txt'               ,
-    rf'.\data\all_download_data\First_Phase_Validation\answer.txt'    ,
-    rf'.\data\all_download_data\Second_Phase\answer.txt'              ,
+    rf'data\First_Phase\answer.txt'                 ,
+    rf'data\First_Phase_Validation\answer.txt'      ,
+    rf'data\Second_Phase\answer.txt'                ,
 ]
 
-GRAB_LABEL = 'ORGANIZATION'
+# GRAB_LABEL = 'ORGANIZATION'
+GRAB_LABEL = 'DEPARTMENT'
 
 import pandas as pd 
 import numpy as np
@@ -26,13 +27,14 @@ if __name__=='__main__':
     
     # df.to_csv(rf'./output/merge_ans.txt', sep='\t', header=None, index=False)
     label_df = df[df['label']==GRAB_LABEL]
-    # label_df.to_csv(rf'./output/merge_ans_label.txt', sep='\t', header=None, index=False)
-    
+    # label_df.to_csv(rf'DEPARTMENT_label.txt', sep='\t', header=None, index=False)
+    # print(label_df)
     r = label_df['content'].unique()
     print(r)
+    print(len(r))
     
     # write r to file
-    with open(rf'./output/force_dict.txt', 'w', encoding='utf-8') as f:
+    with open(rf'tool/dict_maker/force_dict.txt', 'w', encoding='utf-8') as f:
         for line in r:
             f.write(line+'\n')
             

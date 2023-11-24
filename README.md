@@ -109,9 +109,37 @@ Date 	    <Rank 	    子任務 1：病患隱私資訊擷取 	子任務 2：時�
 * https://www.50pros.com/fortune500
 * https://www.sec.gov/files/rules/other/4-460list.htm
 
+# DEPARTMENT dict 
+* (DEPARTMENT_force_dict) 手動刪除字 Cytogenetics, ACT, WEST , North
 
 
 # 目前還有機會提升
 * ORGANIZATION
 * DEPARTMENT # 等待字典
 * COUNTRY
+
+
+# 各標籤說明
+* DOCTOR        
+* DATE          
+* IDNUM         
+* MEDICALRECORD 
+* PATIENT       
+* HOSPITAL      
+* TIME          
+* DEPARTMENT   
+    * 無DICT時分數 0.8841463
+    * 加入2部分字典(除本身) : 跳過
+    * 加入2部分字典 : 0.982069
+* CITY          
+* ZIP           
+* STREET        
+* STATE         
+* AGE           
+* ORGANIZATION  
+* DURATION      
+* PHONE         
+* URL           
+* LOCATION-OTHER
+* SET           
+* COUNTRY       

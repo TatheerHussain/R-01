@@ -95,20 +95,25 @@ for file_name in all_file_names:
     #############################################################################
     ################################### IDNUM ###################################
     #############################################################################
+    if ORGANIZATION_FINDER_EN:# 字典部分提前
+        finder = ORGANIZATION_Finder()
+        finder.set_file(os.path.join(FILE_DIR,file_name))
+        lb = finder.find()
+        for l in lb:
+            file_gen.add_item(name, l[0], l[1], 'ORGANIZATION', l[2])
+    
+    
+    
     if IDNUM_FINDER_EN:
         finder  = IDNUM_Finder()
         finder.set_file(os.path.join(FILE_DIR,file_name))
-        #find all pattern
         lb = finder.find()
-        #add to file_gen
         for l in lb:
             file_gen.add_item(name, l[0], l[1], 'IDNUM', l[2])
     if DOCTOR_FINDER_EN:
         finder  = DOCTOR_Finder()
         finder.set_file(os.path.join(FILE_DIR,file_name))
-        #find all pattern
         lb = finder.find(name)
-        #add to file_gen
         for l in lb:
             file_gen.add_item(name, l[0], l[1], 'DOCTOR', l[2])
     
@@ -117,156 +122,120 @@ for file_name in all_file_names:
     if MEDICALRECORD_FINDER_EN: # 0.9971086327963651
         finder  = MEDICALRECORD_Finder()
         finder.set_file(os.path.join(FILE_DIR,file_name))
-        #find all pattern
         lb = finder.find()
-        #add to file_gen
         for l in lb:
             file_gen.add_item(name, l[0], l[1], 'MEDICALRECORD', l[2])
             
     if PATIENT_FINDER_EN: # 0.9860583016476553
         finder  = PATIENT_Finder()
         finder.set_file(os.path.join(FILE_DIR,file_name))
-        #find all pattern
         lb = finder.find()
-        #add to file_gen
         for l in lb:
             file_gen.add_item(name, l[0], l[1], 'PATIENT', l[2])
     if HOSPITAL_FINDER_EN: # 0.9860583016476553
         finder  = HOSPITAL_Finder()
         finder.set_file(os.path.join(FILE_DIR,file_name))
-        #find all pattern
         lb = finder.find()
-        #add to file_gen
         for l in lb:
             file_gen.add_item(name, l[0], l[1], 'HOSPITAL', l[2])
     if DATE_FINDER_EN:
         finder  = DATE_Finder()
         finder.set_file(os.path.join(FILE_DIR,file_name))
-        #find all pattern
         lb = finder.find()
         lb = finder.date_normalization(lb)
         lb = finder.patch_change_MMDD(lb) ##from 0.8085106382978723 to 0.8636205092431112
-        #add to file_gen
         for l in lb:
             file_gen.add_item(name, l[0], l[1], 'DATE', l[2] , l[3])
     
     if TIME_FINDER_EN:
         finder  = TIME_Finder()
         finder.set_file(os.path.join(FILE_DIR,file_name))
-        #find all pattern
         lb = finder.find()
         lb = finder.time_normalization(lb)
-        #add to file_gen
         for l in lb:
             file_gen.add_item(name, l[0], l[1], 'TIME', l[2] , l[3])
             
     if CITY_FINDER_EN:
         finder  = CITY_Finder()
         finder.set_file(os.path.join(FILE_DIR,file_name))
-        #find all pattern
         lb = finder.find()
-        #add to file_gen
         for l in lb:
             file_gen.add_item(name, l[0], l[1], 'CITY', l[2])
     if STREET_FINDER_EN:  # 0.9921259842519685
         finder = STREET_Finder()
         finder.set_file(os.path.join(FILE_DIR,file_name))
-        #find all pattern
         lb = finder.find()
-        #add to file_gen
         for l in lb:
             file_gen.add_item(name, l[0], l[1], 'STREET', l[2])    
     if ZIP_FINDER_EN:  # 0.9888641425389755
         finder  = ZIP_Finder()
         finder.set_file(os.path.join(FILE_DIR,file_name))
-        #find all pattern
         lb = finder.find()
-        #add to file_gen
         for l in lb:
             file_gen.add_item(name, l[0], l[1], 'ZIP', l[2])
     if STATE_FINDER_EN: # 0.991774383078731
         finder = STATE_Finder()
         finder.set_file(os.path.join(FILE_DIR,file_name))
-        #find all pattern
         lb = finder.find()
-        #add to file_gen
         for l in lb:
             file_gen.add_item(name, l[0], l[1], 'STATE', l[2])
     if DEPARTMENT_FINDER_EN:
         finder = DEPARTMENT_Finder()
         finder.set_file(os.path.join(FILE_DIR,file_name))
-        #find all pattern
         lb = finder.find()
-        #add to file_gen
         for l in lb:
             file_gen.add_item(name, l[0], l[1], 'DEPARTMENT', l[2])
     if AGE_FINDER_EN: # 0.9775280898876404
         finder = AGE_Finder()
         finder.set_file(os.path.join(FILE_DIR,file_name))
-        #find all pattern
         lb = finder.find()
-        #add to file_gen
         for l in lb:
-            #print(l)
             file_gen.add_item(name, l[0], l[1], 'AGE', l[2])
     if DURATION_FINDER_EN: # 0.8275862068965517 # data too few
         finder = DURATION_Finder()
         finder.set_file(os.path.join(FILE_DIR,file_name))
-        #find all pattern
         lb = finder.find()
         lb = finder.duration_normalization(lb)
-        #add to file_gen
         for l in lb:
             file_gen.add_item(name, l[0], l[1], 'DURATION', l[2]  , l[3])
     if PATIENT_FINDER_EN: # 1
         finder = PHONE_Finder()
         finder.set_file(os.path.join(FILE_DIR,file_name))
-        #find all pattern
         lb = finder.find()
-        #add to file_gen
         for l in lb:
             file_gen.add_item(name, l[0], l[1], 'PHONE', l[2])
     if LOCATION_OTHER_FINDER_EN:
         finder = LOCATION_OTHER_Finder()
         finder.set_file(os.path.join(FILE_DIR,file_name))
-        #find all pattern
         lb = finder.find()
-        #add to file_gen
         for l in lb:
             file_gen.add_item(name, l[0], l[1], 'LOCATION-OTHER', l[2])
     if SET_FINDER_EN:
         finder = SET_Finder()
         finder.set_file(os.path.join(FILE_DIR,file_name))
-        #find all pattern
         lb = finder.find()
         lb = finder.set_normalization(lb)
-        #add to file_gen
         for l in lb:
             file_gen.add_item(name, l[0], l[1], 'SET', l[2], l[3])
     if COUNTRY_FINDER_EN:
         finder = COUNTRY_Finder()
         finder.set_file(os.path.join(FILE_DIR,file_name))
-        #find all pattern
         lb = finder.find()
-        #add to file_gen
         for l in lb:
             file_gen.add_item(name, l[0], l[1], 'COUNTRY', l[2])
     
-    if ORGANIZATION_FINDER_EN:
-        finder = ORGANIZATION_Finder()
-        finder.set_file(os.path.join(FILE_DIR,file_name))
-        #find all pattern
-        lb = finder.find()
-        #add to file_gen
-        for l in lb:
-            #print(l)
-            file_gen.add_item(name, l[0], l[1], 'ORGANIZATION', l[2])
+    # if ORGANIZATION_FINDER_EN:
+    #     finder = ORGANIZATION_Finder()
+    #     finder.set_file(os.path.join(FILE_DIR,file_name))
+    #     lb = finder.find()
+    #     for l in lb:
+    #         file_gen.add_item(name, l[0], l[1], 'ORGANIZATION', l[2])
     
     
     
 file_gen.print_df()
 file_gen.remove_overlap() # main for country
-    #save
+#save
 file_gen.save()
 
 # check answer

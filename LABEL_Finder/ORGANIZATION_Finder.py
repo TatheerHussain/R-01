@@ -65,12 +65,13 @@ class ORGANIZATION_Finder(Finder):
         self.res_label = self.remove_overlamp(self.res_label)
         
         ### force  add lb by 
+        ## add label before self.res_label
         if self.force_dict_path!=None:
             dict_finder = Finder_DICT(self.force_dict_path)
             dict_finder.set_file(self.file)
             self.PATTERN = dict_finder.find_all()
             for i in range(len(self.PATTERN)):
-                self.PATTERN[i] = r'\b(' + self.PATTERN[i] + r')\b'
+                self.PATTERN[i] = r'(' + self.PATTERN[i] + r')'
             self.res_label = self.re_find(self.PATTERN) + self.res_label
             self.res_label = self.del_same(self.res_label)
             self.res_label = self.remove_overlamp(self.res_label)
