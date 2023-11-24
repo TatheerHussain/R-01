@@ -51,14 +51,14 @@ COUNTRY_FINDER_EN             = 1
 ORGANIZATION_FINDER_EN        = 1
 # URL_FINDER_EN                 = 1
 
-FILE_DIR ='' 
-ANS_PATH ='' # answer.txt
+FILE_DIR = '' 
+ANS_PATH = None # answer.txt
 
 if 0:
     FILE_DIR = './data/First_Phase/data'
     ANS_PATH = './data/First_Phase/answer.txt'
     
-if 1:
+if 0:
     FILE_DIR = './data/First_Phase_Validation/data'
     ANS_PATH = './data/First_Phase_Validation/answer.txt'
 
@@ -69,6 +69,10 @@ if 0:
 if 0:
     FILE_DIR = './data/merge_first_second_phase/data'
     ANS_PATH = './data/merge_first_second_phase/answer.txt'
+    
+if 1:
+    FILE_DIR = './data/First_Phase/data'
+    ANS_PATH = None
 
 
 file_listdir = os.listdir(FILE_DIR)
@@ -246,22 +250,22 @@ file_gen.save()
 
 # check answer
 # exit() ## dont have answer.txt
+if ANS_PATH != None:
+    my_ans_path = rf'.output/answer.txt'
+    #target_path = rf'data\answer.txt'
+    target_path  = ANS_PATH
+    comparator = Csv_comparator(my_ans_path,target_path ,  specify_label = 'CITY'  , ignore_time = 1 )#'ORGANIZATION'
+    comparator.compare()
+    comparator.print_res()
+    comparator.calc_f1_score()
 
-my_ans_path = rf'.output/answer.txt'
-#target_path = rf'data\answer.txt'
-target_path  = ANS_PATH
-comparator = Csv_comparator(my_ans_path,target_path ,  specify_label = 'CITY'  , ignore_time = 1 )#'ORGANIZATION'
-comparator.compare()
-comparator.print_res()
-comparator.calc_f1_score()
-
-comparator.save_res()
+    comparator.save_res()
 
 
-##### 
-# eval tool cmd :  ./eval/OpenDeid eval/file eval/file --detial
-eval = Eval('./eval')
-eval.set_res_path(my_ans_path)
-eval.set_ref_path(target_path)
-eval.run(detail=0)
+    ##### 
+    # eval tool cmd :  ./eval/OpenDeid eval/file eval/file --detial
+    eval = Eval('./eval')
+    eval.set_res_path(my_ans_path)
+    eval.set_ref_path(target_path)
+    eval.run(detail=0)
 
