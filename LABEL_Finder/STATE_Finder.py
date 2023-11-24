@@ -48,7 +48,7 @@ class STATE_Finder(Finder):
             r'\b(ACT)\b'                          ,
         ]
         '''
-        self.PATTERN = [
+        self.KEYWORD = [
             'Australian Capital Territory' ,
             'Northern Territory'           ,
             'Tasmania'                     ,
@@ -66,19 +66,23 @@ class STATE_Finder(Finder):
             'NSW'                          ,
             'ACT'                          ,
         ]
+        self.PATTERN = []
         self.res_label = []
-        for i in range(len(self.PATTERN)):
-            if len(self.PATTERN[i])<5:
+        for i in range(len(self.KEYWORD)):
+            if len(self.KEYWORD[i])<5:
                 # self.PATTERN[i] = r'\b('+self.PATTERN[i]+r')[ \d]*\n'#V1
-                self.PATTERN[i] = r'\b('+self.PATTERN[i]+r') *\d\d\d\d'#
+                self.PATTERN.append( r'('+self.KEYWORD[i]+r') *\d\d\d\d' )
             else:
                 # self.PATTERN[i] = r'('+self.PATTERN[i]+r')[ \d]*\n'#V1
-                self.PATTERN[i] = r'('+self.PATTERN[i]+r') *\d\d\d\d'#
+                self.PATTERN.append( r'('+self.KEYWORD[i]+r') *\d\d\d\d' )
+                
         
+
         
     def find(self):
         self.res_label = self.re_find(self.PATTERN)
         self.res_label = self.del_same(self.res_label)
+        self.res_label = self.remove_overlamp(self.res_label)
         
         # pattern = r'Lab ?No:.*\n([A-Z][A-Za-z\.]*(?: +[A-Zo][a-z\.]*)*)\b'### V3  # 'o' is for of  # Xxxxx of Xxxxx
         

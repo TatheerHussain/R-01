@@ -27,6 +27,7 @@ from LABEL_Finder.LOCATION_OTHER_Finder import LOCATION_OTHER_Finder
 from LABEL_Finder.SET_Finder import SET_Finder
 from LABEL_Finder.COUNTRY_Finder import COUNTRY_Finder
 from LABEL_Finder.ORGANIZATION_Finder import ORGANIZATION_Finder
+from LABEL_Finder.URL_Finder import URL_Finder
 
 ### all finder en
 IDNUM_FINDER_EN               = 1
@@ -48,6 +49,7 @@ LOCATION_OTHER_FINDER_EN      = 1
 SET_FINDER_EN                 = 1
 COUNTRY_FINDER_EN             = 1
 ORGANIZATION_FINDER_EN        = 1
+URL_FINDER_EN                 = 1
 
 FILE_DIR ='' 
 ANS_PATH ='' # answer.txt
@@ -229,6 +231,12 @@ for file_name in all_file_names:
         for l in lb:
             file_gen.add_item(name, l[0], l[1], 'ORGANIZATION', l[2])
     
+    if URL_FINDER_EN:
+        finder = URL_Finder()
+        finder.set_file(os.path.join(FILE_DIR,file_name))
+        lb = finder.find()
+        for l in lb:
+            file_gen.add_item(name, l[0], l[1], 'URL', l[2])
     
     
 file_gen.print_df()
@@ -242,7 +250,7 @@ file_gen.save()
 my_ans_path = rf'.output/answer.txt'
 #target_path = rf'data\answer.txt'
 target_path  = ANS_PATH
-comparator = Csv_comparator(my_ans_path,target_path ,  specify_label = 'TIME'  , ignore_time = 1 )#'ORGANIZATION'
+comparator = Csv_comparator(my_ans_path,target_path ,  specify_label = 'CITY'  , ignore_time = 1 )#'ORGANIZATION'
 comparator.compare()
 comparator.print_res()
 comparator.calc_f1_score()

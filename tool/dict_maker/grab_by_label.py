@@ -6,7 +6,8 @@ ALL_ANSWER_PATH = [
 ]
 
 # GRAB_LABEL = 'ORGANIZATION'
-GRAB_LABEL = 'DEPARTMENT'
+# GRAB_LABEL = 'DEPARTMENT'
+GRAB_LABEL = 'CITY'
 
 import pandas as pd 
 import numpy as np
