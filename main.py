@@ -49,7 +49,7 @@ LOCATION_OTHER_FINDER_EN      = 1
 SET_FINDER_EN                 = 1
 COUNTRY_FINDER_EN             = 1
 ORGANIZATION_FINDER_EN        = 1
-URL_FINDER_EN                 = 1
+# URL_FINDER_EN                 = 1
 
 FILE_DIR ='' 
 ANS_PATH ='' # answer.txt
@@ -58,7 +58,7 @@ if 0:
     FILE_DIR = './data/First_Phase/data'
     ANS_PATH = './data/First_Phase/answer.txt'
     
-if 0:
+if 1:
     FILE_DIR = './data/First_Phase_Validation/data'
     ANS_PATH = './data/First_Phase_Validation/answer.txt'
 
@@ -66,7 +66,7 @@ if 0:
     FILE_DIR = './data/Second_Phase/data'
     ANS_PATH = './data/Second_Phase/answer.txt'
 
-if 1:
+if 0:
     FILE_DIR = './data/merge_first_second_phase/data'
     ANS_PATH = './data/merge_first_second_phase/answer.txt'
 
@@ -231,12 +231,12 @@ for file_name in all_file_names:
         for l in lb:
             file_gen.add_item(name, l[0], l[1], 'ORGANIZATION', l[2])
     
-    if URL_FINDER_EN:
-        finder = URL_Finder()
-        finder.set_file(os.path.join(FILE_DIR,file_name))
-        lb = finder.find()
-        for l in lb:
-            file_gen.add_item(name, l[0], l[1], 'URL', l[2])
+    # if URL_FINDER_EN:
+    #     finder = URL_Finder()
+    #     finder.set_file(os.path.join(FILE_DIR,file_name))
+    #     lb = finder.find()
+    #     for l in lb:
+    #         file_gen.add_item(name, l[0], l[1], 'URL', l[2])
     
     
 file_gen.print_df()
