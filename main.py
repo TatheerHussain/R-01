@@ -49,7 +49,7 @@ LOCATION_OTHER_FINDER_EN      = 1
 SET_FINDER_EN                 = 1
 COUNTRY_FINDER_EN             = 1
 ORGANIZATION_FINDER_EN        = 1
-# URL_FINDER_EN                 = 1
+URL_FINDER_EN                 = 1
 
 FILE_DIR = '' 
 ANS_PATH = None # answer.txt
@@ -71,7 +71,7 @@ if 0:
     ANS_PATH = './data/merge_first_second_phase/answer.txt'
     
 if 1:
-    FILE_DIR = './data/First_Phase/data'
+    FILE_DIR = './data/opendid_test'
     ANS_PATH = None
 
 
@@ -235,12 +235,12 @@ for file_name in all_file_names:
         for l in lb:
             file_gen.add_item(name, l[0], l[1], 'ORGANIZATION', l[2])
     
-    # if URL_FINDER_EN:
-    #     finder = URL_Finder()
-    #     finder.set_file(os.path.join(FILE_DIR,file_name))
-    #     lb = finder.find()
-    #     for l in lb:
-    #         file_gen.add_item(name, l[0], l[1], 'URL', l[2])
+    if URL_FINDER_EN:
+        finder = URL_Finder()
+        finder.set_file(os.path.join(FILE_DIR,file_name))
+        lb = finder.find()
+        for l in lb:
+            file_gen.add_item(name, l[0], l[1], 'URL', l[2])
     
     
 file_gen.print_df()

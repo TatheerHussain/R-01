@@ -7,9 +7,11 @@ import argparse
 import subprocess
 
 DATA_DIR = [
-    rf'data\First_Phase\data',
-    rf'data\First_Phase_Validation\data',
-    rf'data\Second_Phase\data',
+    # rf'data\First_Phase\data',
+    # rf'data\First_Phase_Validation\data',
+    # rf'data\Second_Phase\data',
+    rf'data\opendid_test',
+    
 ]
 
 parser = argparse.ArgumentParser()

@@ -188,6 +188,7 @@ Date 	    <Rank 	    子任務 1：病患隱私資訊擷取 	子任務 2：時�
     * 只找twice , 沒辦法
 * COUNTRY 
     * 等字典
+    * https://xml.coverpages.org/country3166.html
 * ROOM
     * 1340	ROOM	5345	5366	Level 4 Campus Centre
     * 資料亂標 只有一個 不做了
