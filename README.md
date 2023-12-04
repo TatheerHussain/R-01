@@ -16,6 +16,8 @@
 * CPU：12th Gen Intel(R) Core(TM) i9-12900   2.40 GHz
 * RAM : 32.0 GB
 * 程式語言：Python 3.11.5
+* 文字編輯器 : vscode 1.84.2
+
 
 ### python 函式庫
 * pandas 2.0.3
@@ -38,7 +40,8 @@ python main.py
 可在.output取得answer.txt
 
 ## 小工具
-### file_open
+### file_open 
+    自動以VSCODE開啟該病例
 * -f 檔案編號
 * -i 開始位置索引
 
