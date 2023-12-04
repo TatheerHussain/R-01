@@ -33,7 +33,7 @@ cd worker_intelligence_ner
 ```
 
 ### 產生answer.txt
-手動複製 opendid_test病例資料夾 到 worker_intelligence_ner\data\opendid_test
+手動複製 opendid_test病例資料夾內容 到 worker_intelligence_ner\data\opendid_test
 ```
 python main.py
 ```
