@@ -1,10 +1,8 @@
 # worker_intelligence_ner
-工人智慧 命名實體識別
-
-隱私保護與醫學數據標準化競賽：解碼臨床病例、讓數據說故事
+Privacy Protection and Medical Data Standardization Competition: Decoding Clinical Cases, Letting Data Tell the Story
 # TEAM_3970
-## 公布競賽結果 
-### 分數
+## Competition Results
+### Score
 |  User   | Rank  | 子任務 1：病患隱私資訊擷取 | 子任務 2：時間資訊正規化 | 
 |  :---:  | :---: | :---------------------:  | :--------------------: |
 | zhaorui|3.00 (1)| 0.8660 (5)                | 0.8685 (1) |
@@ -47,39 +45,41 @@
 
 
 
-## 環境
-* 作業系統：Windows 11 專業版 Insider Preview
-* CPU：12th Gen Intel(R) Core(TM) i9-12900   2.40 GHz
-* RAM : 32.0 GB
-* 程式語言：Python 3.11.5
-* 文字編輯器 : vscode 1.84.2
+## Environment
+
+* **Operating System**: Windows 11 Pro Insider Preview
+* **CPU**: 12th Gen Intel(R) Core(TM) i9-12900, 2.40 GHz
+* **RAM**: 32.0 GB
+* **Programming Language**: Python 3.11.5
+* **Text Editor**: VSCode 1.84.2
 
 
-### python 函式庫
+### python library
 * pandas 2.0.3
 
 
-# 使用說明
+# Instructions for use 
 
-## 比賽輸出
+## Competition Output
 ### clone
 ```
 git clone https://github.com/zhao-rui-NB/worker_intelligence_ner.git
 cd worker_intelligence_ner
 ```
 
-### 產生answer.txt
-手動複製 opendid_test病例資料夾內容 到 worker_intelligence_ner\data\opendid_test
+
+### Generate answer.txt
+Manually copy the contents of the `opendid_test` case folder to `worker_intelligence_ner\data\opendid_test`
 ```
 python main.py
 ```
-可在.output取得answer.txt
+You can find `answer.txt` in the `.output` folder.
 
-## 小工具
+
 ### file_open 
     自動以VSCODE開啟該病例
-* -f 檔案編號
-* -i 開始位置索引
+* -f File Number
+* -i Starting Position Index
 
 ```
 python tool/file_open.py -f 1097 -i 438
@@ -89,7 +89,7 @@ python tool/file_open.py -f 1097 -i 438
 
 
 
-## ORGANIZATION 字典來源
+## ORGANIZATION Dictionary source
 ### dict V2 : 
 * https://www.50pros.com/fortune500
 * https://www.sec.gov/files/rules/other/4-460list.htm
